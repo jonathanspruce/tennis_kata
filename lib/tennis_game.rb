@@ -40,8 +40,7 @@ class TennisGame
   def which_team_advantage
     # return the index of the team with the advantage,
     # if there is only one point difference
-    @points.index(@points.max) if (@points[0] >= 3 && @points[1] >= 3) &&
-        (@points[0] - @points[1]).abs == 1
+    check_points(3, 1)
   end
 
   def win?
@@ -49,8 +48,12 @@ class TennisGame
   end
 
   def which_team_win
-    @points.index(@points.max) if (@points[0] >= 4 || @points[1] >= 4) &&
-        (@points[0] - @points[1]).abs >= 2
+    check_points(4, 2)
+  end
+
+  def check_points(min_points, difference)
+    @points.index(@points.max) if (@points[0] >= min_points ||
+        @points[1] >= min_points) && (@points[0] - @points[1]).abs == difference
   end
 
   # used to add one point to the specified team
