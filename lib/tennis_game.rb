@@ -4,7 +4,7 @@
 class TennisGame
   TENNIS_POINTS = %w(Love Fifteen Thirty Fourty Advantage).freeze
 
-  attr_accessor :points
+  attr_accessor :points, :winner
 
   def initialize
     # create score array with scores for both teams
@@ -14,7 +14,10 @@ class TennisGame
   # converts the score into a the tennis scores
   def score
     return 'Deuce' if deuce?
-    return "Player #{which_player_win} Win!" if win?
+    if win?
+      @winner = which_player_win
+      return "Player #{which_player_win} Win!"
+    end
     # else just show converted scores
     "#{TENNIS_POINTS[@points[0]]} : #{TENNIS_POINTS[@points[1]]}"
   end
@@ -40,7 +43,7 @@ class TennisGame
     opp_no = opposition(player_no)
     # if the opposition has the advantage -1 from their score,
     # else add to the player that won the point
-    (points[opp_no] == 4) ? points[opp_no] -= 1 : points[player_no] += 1
+    (@points[opp_no] == 4) ? @points[opp_no] -= 1 : @points[player_no] += 1
   end
 
   private
