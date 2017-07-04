@@ -50,35 +50,42 @@ describe TennisGame do
       context 'when advantage' do
         context 'when the score is "4 : 3"' do
           before { tennis_game.points = [4, 3] }
-          it { is_expected.to eq('Advantage Team 0') }
+          it { is_expected.to eq('Advantage : Fourty') }
         end
 
-        context 'when the score is "4 : 5"' do
-          before { tennis_game.points = [4, 5] }
-          it { is_expected.to eq('Advantage Team 1') }
+        context 'when the score is "3 : 4"' do
+          before { tennis_game.points = [3, 4] }
+          it { is_expected.to eq('Fourty : Advantage') }
         end
       end
 
-      context 'when a team has won' do
+      context 'when a player has won' do
         context 'when the score is "4 : 0"' do
           before { tennis_game.points = [4, 0] }
-          it { is_expected.to eq('Team 0 Win!') }
+          it { is_expected.to eq('Player 0 Win!') }
         end
 
         context 'when the score is "4 : 6"' do
-          before { tennis_game.points = [4, 6] }
-          it { is_expected.to eq('Team 1 Win!') }
+          before { tennis_game.points = [3, 5] }
+          it { is_expected.to eq('Player 1 Win!') }
         end
       end
     end
   end
 
   describe '#add_point' do
-    it 'should add one point to the specified team' do
+    it 'should add one point to the specified player' do
       expect { tennis_game.add_point(0) }.to change { tennis_game.points[0] }
         .from(0).to(1)
       expect { tennis_game.add_point(1) }.to change { tennis_game.points[1] }
         .from(0).to(1)
+    end
+    context 'when one player has the advantage and the other wins the point' do
+      before { tennis_game.points = [3, 4] }
+      it 'should reduce the points for the player at the advantage' do
+        expect { tennis_game.add_point(0) }.to change { tennis_game.points[1] }
+          .from(4).to(3)
+      end
     end
   end
 end
