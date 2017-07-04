@@ -62,12 +62,12 @@ describe TennisGame do
       context 'when a player has won' do
         context 'when the score is "4 : 0"' do
           before { tennis_game.points = [4, 0] }
-          it { is_expected.to eq('Player 0 Win!') }
+          it { is_expected.to eq('Player 0 won the game') }
         end
 
         context 'when the score is "4 : 6"' do
           before { tennis_game.points = [3, 5] }
-          it { is_expected.to eq('Player 1 Win!') }
+          it { is_expected.to eq('Player 1 won the game') }
         end
       end
     end

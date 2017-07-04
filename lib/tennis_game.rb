@@ -10,13 +10,13 @@ class TennisGame < TennisScore
 
   def initialize
     # create score array with scores for both teams
-    super(4, 2)
+    super(4, 2, 'Player %s won the game')
   end
 
   # converts the score into a the tennis scores
   def score
     return 'Deuce' if deuce?
-    return "Player #{which_player_win} Win!" if win?
+    return win_message if win?
     # else just show converted scores
     "#{TENNIS_POINTS[@points[0]]} : #{TENNIS_POINTS[@points[1]]}"
   end
@@ -32,7 +32,12 @@ class TennisGame < TennisScore
     # get opposition index number
     opp_no = opposition(player_no)
     # if the opposition has the advantage -1 from their score, else super
-    (@points[opp_no] == 4) ? @points[opp_no] -= 1 : super
+    if @points[opp_no] == 4
+      @points[opp_no] -= 1
+      score
+    else
+      super
+    end
   end
 
   private
