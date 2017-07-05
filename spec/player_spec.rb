@@ -6,6 +6,8 @@ describe Player do
   let(:name) { 'Rodger Federer' }
   let(:id) { 0 }
   let(:opp_id) { 1 }
+  subject(:player) { Player.new(name, id) }
+
   it 'should return all instance variables' do
     player = Player.new(name, id)
     expect(player.name).to eq(name)

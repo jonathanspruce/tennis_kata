@@ -8,9 +8,9 @@ class TennisGame < TennisScore
 
   attr_accessor :points, :winner
 
-  def initialize
+  def initialize(players)
     # create score array with scores for both teams
-    super(4, 2, 'game')
+    super(4, 2, 'game', players)
   end
 
   # converts the score into a the tennis scores
@@ -42,7 +42,7 @@ class TennisGame < TennisScore
 
   def play
     until win?
-      puts 'Which player won the point? (0 or 1)'
+      puts "Which player won the point? \n0: #{players[0].name}\n1: #{players[1].name}"
       result = gets.to_i
       if [0, 1].include? result
         puts add_point(result)

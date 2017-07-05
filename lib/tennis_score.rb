@@ -3,14 +3,15 @@
 # abstract class used to manage basic elements of scoring in
 # all stages of a tennis match
 class TennisScore
-  attr_accessor :points, :winner
+  attr_accessor :points, :winner, :players
 
-  def initialize(min_win, win_by, type)
+  def initialize(min_win, win_by, type, players)
     # create score array with scores for both teams
     @points = [0, 0]
     @min_win = min_win # defines the minimum points a player must have to win
     @win_by = win_by # defines the number of points more a player must have than their opposition to win
-    @type = type
+    @type = type # usually game/set/match
+    @players = players # the two player objects for the match
   end
 
   # converts the score into a the tennis scores
@@ -40,6 +41,6 @@ class TennisScore
   private
 
   def win_message
-    format('Player %s won the %s', which_player_win, @type)
+    format('%s won the %s', @players[which_player_win].name, @type)
   end
 end

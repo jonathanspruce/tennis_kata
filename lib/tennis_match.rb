@@ -5,8 +5,8 @@ require_relative 'tennis_set'
 
 # helps score for a full tennis match
 class TennisMatch < TennisScore
-  def initialize(set_number)
-    super(set_number, 0, 'match')
+  def initialize(set_number, players)
+    super(set_number, 0, 'match', players)
   end
 
   def play
@@ -16,7 +16,7 @@ class TennisMatch < TennisScore
 
     until win?
       puts "Set #{total_points + 1}:"
-      tennis_set = TennisSet.new(@skip_games)
+      tennis_set = TennisSet.new(@skip_games, players)
       puts add_point(tennis_set.play)
     end
   end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# used for storing information about a tennis player
 class Player
   attr_accessor :name, :id, :opp_id
 
