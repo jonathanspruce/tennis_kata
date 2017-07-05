@@ -15,6 +15,7 @@ class TennisSet < TennisScore
       puts 'Do you want to skip the games in this set? (y/n)'
       @skip_games = (gets.chomp == 'y')
     end
+    puts "Game #{total_points + 1}"
     if @skip_games
       skip_game until win?
     else
@@ -28,7 +29,7 @@ class TennisSet < TennisScore
 
   # if the user wants to skip the individual games then the
   def skip_game
-    puts "Game #{total_points + 1}:\nWhich player won the game?\n0: #{players[0].name}\n1: #{players[1].name}"
+    puts "Which player won the game?\n0: #{players[0].name}\n1: #{players[1].name}"
     if [0, 1].include? gets.chomp.to_i
       puts add_point(result)
     else
@@ -37,7 +38,16 @@ class TennisSet < TennisScore
   end
 
   def play_game
-    tennis_game = TennisGame.new(players)
+    match_players = players
+    match_players.each { |player| puts player.name }
+
+    if total_points.even?
+      puts "#{players[0].name} to serve."
+    else
+      puts "#{players[1].name} to serve."
+      match_players = match_players.reverse
+    end
+    tennis_game = TennisGame.new(match_players)
     puts add_point(tennis_game.play)
   end
 end
