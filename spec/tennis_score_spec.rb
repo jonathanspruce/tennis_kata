@@ -4,13 +4,9 @@ require 'tennis_score'
 require 'player'
 
 describe TennisScore do
-<<<<<<< HEAD
-  subject(:tennis_score) { TennisScore.new(5, 2, 'test') }
-=======
   let(:p1) { Player.new('p1', 0) }
   let(:p2) { Player.new('p2', 1) }
   subject(:tennis_score) { TennisScore.new(5, 2, 'test', [p1, p2]) }
->>>>>>> player
 
   describe '#score' do
     subject { tennis_score.score }
@@ -67,15 +63,9 @@ describe TennisScore do
     context 'when a player has won' do
       it 'returns the win message with which player won included' do
         tennis_score.points = [4, 0]
-<<<<<<< HEAD
-        expect(tennis_score.add_point(0)).to eq('Player 0 won the test')
-        tennis_score.points = [0, 4]
-        expect(tennis_score.add_point(1)).to eq('Player 1 won the test')
-=======
         expect(tennis_score.add_point(0)).to eq('p1 won the test')
         tennis_score.points = [0, 4]
         expect(tennis_score.add_point(1)).to eq('p2 won the test')
->>>>>>> player
       end
     end
   end
