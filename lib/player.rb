@@ -6,6 +6,6 @@ class Player
   def initialize(name, id)
     @name = name
     @id = id
-    @opp_id = id % 1 # gets the opposite of id
+    @opp_id = (id + 1) % 2 # gets the opposite of id
   end
 end
