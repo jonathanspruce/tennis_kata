@@ -10,7 +10,7 @@ class TennisGame < TennisScore
 
   def initialize
     # create score array with scores for both teams
-    super(4, 2, 'Player %s won the game')
+    super(4, 2, 'game')
   end
 
   # converts the score into a the tennis scores
@@ -38,6 +38,19 @@ class TennisGame < TennisScore
     else
       super
     end
+  end
+
+  def play
+    until win?
+      puts 'Which player won the point? (0 or 1)'
+      result = gets.to_i
+      if [0, 1].include? result
+        puts add_point(result)
+      else
+        puts 'Fault! Second serve... Please only enter 0 or 1.'
+      end
+    end
+    which_player_win
   end
 
   private

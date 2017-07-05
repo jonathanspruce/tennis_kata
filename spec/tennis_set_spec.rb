@@ -3,7 +3,7 @@
 require 'tennis_set'
 
 describe TennisSet do
-  subject(:tennis_set) { TennisSet.new }
+  subject(:tennis_set) { TennisSet.new(true) }
 
   describe '#add_point' do
     it 'should add 1 point to the specified player' do
