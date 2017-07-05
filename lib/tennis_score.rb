@@ -15,7 +15,7 @@ class TennisScore
 
   # converts the score into a the tennis scores
   def score
-    "#{@points[0]} : #{@points[1]}}"
+    "#{@points[0]} : #{@points[1]}"
   end
 
   def win?
