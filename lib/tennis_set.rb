@@ -30,7 +30,8 @@ class TennisSet < TennisScore
   # if the user wants to skip the individual games then the
   def skip_game
     puts "Which player won the game?\n0: #{players[0].name}\n1: #{players[1].name}"
-    if [0, 1].include? gets.chomp.to_i
+    result = gets.chomp.to_i
+    if [0, 1].include? result
       puts add_point(result)
     else
       puts 'Please only enter 0 or 1.'
