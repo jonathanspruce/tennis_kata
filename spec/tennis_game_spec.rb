@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 require 'tennis_game'
+require 'player'
 
 describe TennisGame do
-  subject(:tennis_game) { TennisGame.new }
+  let(:p1) { Player.new('p1', 0) }
+  let(:p2) { Player.new('p2', 1) }
+  subject(:tennis_game) { TennisGame.new([p1, p2]) }
+
   describe '@points' do
     context 'at the start of game' do
       it 'should start with 0 points for both players' do
@@ -62,12 +66,12 @@ describe TennisGame do
       context 'when a player has won' do
         context 'when the score is "4 : 0"' do
           before { tennis_game.points = [4, 0] }
-          it { is_expected.to eq('Player 0 Win!') }
+          it { is_expected.to eq('p1 won the game') }
         end
 
         context 'when the score is "4 : 6"' do
           before { tennis_game.points = [3, 5] }
-          it { is_expected.to eq('Player 1 Win!') }
+          it { is_expected.to eq('p2 won the game') }
         end
       end
     end
